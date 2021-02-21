@@ -24,7 +24,7 @@
       <div class="input-group input-group-lg text-input">
         <input type="text" class="form-control" placeholder="Submit player name..." id="player" aria-label="Large" aria-describedby="inputGroup-sizing-lg">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" onclick="createName()">Submit</button>
+          <button class="btn btn-outline-secondary" type="button" onclick="startGame()">Submit</button>
         </div>
       </div>
 
@@ -38,12 +38,19 @@
       var score = 0;
       sessionStorage.setItem("score", score);
 
+      function startGame() {
+        createName();
+        getStartTime();
+        updateScore(0);
+      }
+
       function createName() {
         var name = document.getElementById('player').value;
         sessionStorage.setItem("name", name);
 
         document.getElementById('playerHUD').innerHTML = name;
         startGameTime();
+
       }
 
       function updateScore(amount) {
@@ -55,7 +62,7 @@
       }
 
       // Timer functions
-      function startGameTime() {
+      function getStartTime() {
         var d = new Date();
         var t = d.getTime();
 
