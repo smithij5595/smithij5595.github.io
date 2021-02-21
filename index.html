@@ -9,27 +9,40 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
-      <a class="navbar-brand" href="index.html">Home</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav mx-auto">
-          <a class="nav-item nav-link" href="here.html">Go Here</a>
-          <a class="nav-item nav-link" href="no_here.html">No, Go Here</a>
-          <a class="nav-item nav-link" href="maybe.html">NO HERE</a>
-          <a class="nav-item nav-link" href="dont_go_here.html">Do not go here</a>
-        </div>
-      </div>
-    </nav>
+    <div class="header" id="hud">
+      <h1 id="playerHUD"><%:Session["name"]%></h1>
+      <h1 id="scoreHUD"><%:Session["score"]%></h1>
+    </div>
 
-    <div class="text-center mb-5">
-      <img src="isaiah and nat.png" style="width: 40%;" alt="" />
+    <div class="input-group input-group-lg">
+      <input type="text" class="form-control" placeholder="Submit player name..." id="player" aria-label="Large" aria-describedby="inputGroup-sizing-lg">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" onclick="createName()">Submit</button>
+      </div>
+    </div>
+
+    <div>
+      <a class="btn btn-lg branding-lead">Start</a>
+      <a class="btn btn-lg branding-lead">Begin</a>
     </div>
 
 
 
+    <script>
+      var score = 0;
+      sessionStorage.setItem("score", score);
+
+      function createName() {
+        var name = document.getElementById('player');
+        sessionStorage.setItem("name", name);
+      }
+
+      function updateScore(amount) {
+        var score = sessionStorage.getItem("score");
+        score += amount;
+        sessionStorage.setItem("score", score);
+      }
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
