@@ -2,30 +2,36 @@
 <html>
 
   <head>
-    <title>Isaiah's Demo Site</title>
+    <title>The Game</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
   </head>
 
   <body>
-    <div class="header" id="hud">
-      <h1 id="playerHUD"></h1>
-      <h1 id="scoreHUD"></h1>
-    </div>
+    <div class="body-container">
+      <div class="row hud">
+        <div class="col-6 hudPlayer">
+          <h1 id="playerHUD"></h1>
+        </div>
 
-    <div class="input-group input-group-lg">
-      <input type="text" class="form-control" placeholder="Submit player name..." id="player" aria-label="Large" aria-describedby="inputGroup-sizing-lg">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" onclick="createName()">Submit</button>
+        <div class="col-6 hudScore">
+          <h1 id="scoreHUD"></h1>
+        </div>
+      </div>
+
+      <div class="input-group input-group-lg text-input">
+        <input type="text" class="form-control" placeholder="Submit player name..." id="player" aria-label="Large" aria-describedby="inputGroup-sizing-lg">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" onclick="createName()">Submit</button>
+        </div>
+      </div>
+
+      <div>
+        <p><a class="btn btn-lg branding-lead" href="" id="begin">Begin</a> <a class="btn btn-lg branding-lead" disabled>Game</a></p>
       </div>
     </div>
-
-    <div>
-      <a class="btn btn-lg branding-lead">Start</a>
-      <a class="btn btn-lg branding-lead">Begin</a>
-    </div>
-
 
 
     <script>
@@ -33,10 +39,11 @@
       sessionStorage.setItem("score", score);
 
       function createName() {
-        var name = document.getElementById('player');
+        var name = document.getElementById('player').value;
         sessionStorage.setItem("name", name);
 
         document.getElementById('playerHUD').innerHTML = name;
+        startGameTime();
       }
 
       function updateScore(amount) {
@@ -45,6 +52,31 @@
         sessionStorage.setItem("score", score);
 
         document.getElementById('scoreHUD').innerHTML = score;
+      }
+
+      // Timer functions
+      function startGameTime() {
+        var d = new Date();
+        var t = d.getTime();
+
+        sessionStorage.setItem("startTime", t);
+      }
+
+      function endGameTime() {
+        var minutes = 1000 * 60;
+        var seconds = 1000;
+
+        var d = new Date();
+        var t = d.getTime();
+
+        var st = sessionStorage.getItem("start");
+
+        var x = t - st;
+
+        var ym = Math.floor(x / 60000);
+        var ys = (x - (ym * 60000)) / seconds;
+
+        var answer = ym + " minutes " + ys + " seconds";
       }
     </script>
 

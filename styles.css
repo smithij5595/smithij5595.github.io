@@ -1,0 +1,28 @@
+.body-container {
+  padding: 10em;
+}
+
+.hud {
+
+}
+
+.hudPlayer {
+ text-align: left;
+}
+
+.hudScore {
+  text-align: right;
+}
+
+.text-input {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+a#begin {
+  color: white;
+}
+
+a#begin:hover {
+  color: black;
+}
