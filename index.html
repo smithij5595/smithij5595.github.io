@@ -10,8 +10,8 @@
 
   <body>
     <div class="header" id="hud">
-      <h1 id="playerHUD"><%:Session["name"]%></h1>
-      <h1 id="scoreHUD"><%:Session["score"]%></h1>
+      <h1 id="playerHUD"></h1>
+      <h1 id="scoreHUD"></h1>
     </div>
 
     <div class="input-group input-group-lg">
@@ -35,12 +35,16 @@
       function createName() {
         var name = document.getElementById('player');
         sessionStorage.setItem("name", name);
+
+        document.getElementById('playerHUD').innerHTML = name;
       }
 
       function updateScore(amount) {
         var score = sessionStorage.getItem("score");
         score += amount;
         sessionStorage.setItem("score", score);
+
+        document.getElementById('scoreHUD').innerHTML = score;
       }
     </script>
 
